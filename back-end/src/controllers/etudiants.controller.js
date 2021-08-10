@@ -1,80 +1,76 @@
 const EtudiantsModel = require('../models/etudiants.model');
  
-// get all employee list
-exports.getEmployeeList = (req, res)=> {
-    //console.log('here all employees list');
-    EtudiantsModel.getAllEmployees((err, employees) =>{
+// get all  list
+exports.getEtudiantsList = (req, res)=> {
+    EtudiantsModel.getAllEtudiants((err, etudiants) =>{
         console.log('We are here');
         if(err)
         res.send(err);
-        console.log('Employees', employees);
-        res.send(employees)
+        console.log('Etudiants', etudiants);
+        res.send(etudiants)
     })
 }
  
-// get employee by Name for earch by Name 
-exports.getEmployeeByName = (req, res)=>{
-    //console.log('get emp by id');
-    EtudiantsModel.getEmployeeByName(req.params.cin, (err, employee)=>{
+// get  by Name for earch by Name 
+exports.getEtudiantsByName = (req, res)=>{
+    EtudiantsModel.getEtudiantsByName(req.params.cin, (err, etudiants)=>{
         if(err)
         res.send(err);
-        console.log('single employee data',employee);
-        res.send(employee);
+        console.log('single etudiants data',etudiants);
+        res.send(etudiants);
     })
 }
  
  
-// create new employee
-exports.createNewEmployee = (req, res) =>{
-    const employeeReqData = new EtudiantsModel(req.body);
-    console.log('employeeReqData', employeeReqData);
+// create new 
+exports.createNewEtudiants = (req, res) =>{
+    const etudiantsReqData = new EtudiantsModel(req.body);
+    console.log('etudiantsReqData', etudiantsReqData);
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        EtudiantsModel.createEmployee(employeeReqData, (err, employee)=>{
+        EtudiantsModel.createEtudiants( etudiantsReqData, (err, etudiants)=>{
             if(err)
             res.send(err);
-            res.json({status: true, message: 'Employee Created Successfully', data: employee.insertId})
+            res.json({status: true, message: 'etudiants Created Successfully', data: etudiants.insertId})
         })
     }
 }
  
  
-// get employee by ID  for Update 
-exports.getEmployeeByID = (req, res)=>{
-    //console.log('get emp by id');
-    EtudiantsModel.getEmployeeByID(req.params.id, (err, employee)=>{
+// get  by ID  for Update 
+exports.getEtudiantsByID = (req, res)=>{
+    EtudiantsModel.getEtudiantsByID(req.params.id, (err, etudiants)=>{
         if(err)
         res.send(err);
-        console.log('single employee data',employee);
-        // res.json({"first_name":"Dheeraj"});
-        res.send(JSON.stringify({ status: 200, error: null, response: employee }));
+        console.log('single etudiants data' ,etudiants);
+       res.send(JSON.stringify({ status: 200, error: null, response: etudiants }));
     })
 }
  
  
-// update employee
-exports.updateEmployee = (req, res)=>{
-    const employeeReqData = new EtudiantsModel(req.body);
-    console.log('employeeReqData update', employeeReqData);
+// update 
+exports.updateEtudiants = (req, res)=>{
+    const etudiantsReqData = new EtudiantsModel(req.body);
+    console.log('etudiantsReqData update', etudiantsReqData);
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        EtudiantsModel.updateEmployee(req.params.id, employeeReqData, (err, employee)=>{
+        EtudiantsModel.updateEtudiants(req.params.id, etudiantsReqData, (err, etudiants)=>{
             if(err)
             res.send(err);
-            res.json({status: true, message: 'Employee updated Successfully'})
+            res.json({status: true, message: 'Etudiants updated Successfully'})
         })
     }
 }
  
-// delete employee
-exports.deleteEmployee = (req, res)=>{
-    EtudiantsModel.deleteEmployee(req.params.id, (err, employee)=>{
+// delete 
+exports.deleteEtudiants = (req, res)=>{
+    EtudiantsModel.deleteEtudiants(req.params.id, (err, etudiants)=>{
         if(err)
         res.send(err);
-        res.json({success:true, message: 'Employee deleted successully!'});
+        res.json({success:true, message: 'Etudiants deleted successully!'});
     })
 }

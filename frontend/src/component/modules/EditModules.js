@@ -25,7 +25,7 @@ const EditModules = () => {
   }, []);
  
    
-  const updateEmployee = async e => {
+  const updateModules = async e => {
     e.preventDefault();
     await axios.put(`http://localhost:5000/api/v2/modules/${id}`, user);
     history.push("/");
@@ -54,9 +54,9 @@ const EditModules = () => {
     <div className="container">
      <div className="row mt-4"> 
       <div className="col-sm-5 col-offset-3 mx-auto shadow p-5">
-       <h4 className="text-center mb-4">Edit A employee</h4>
+       <h4 className="text-center mb-4">Edit A Modules</h4>
        
-          <h5 className="text-success">Employee ID : {user.id} </h5>
+          <h5 className="text-success">Modules ID : {user.id} </h5>
           <div className="form-group mb-3">
             <input
               type="text"
@@ -80,7 +80,7 @@ const EditModules = () => {
        
        
       
-          <button onClick={updateEmployee} className="btn btn-secondary btn-block">Update Employee</button>
+          <button onClick={updateModules} className="btn btn-secondary btn-block">Update Modules</button>
        
        </div>
       </div> 

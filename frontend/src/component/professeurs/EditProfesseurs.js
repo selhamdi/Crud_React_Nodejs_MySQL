@@ -16,7 +16,7 @@ const EditProfesseurs = () => {
     })
 
 
-    const { matricule ,nom_complet,date_inscription,modules_enseigner} = user;
+    const { matricule , nom_complet, date_inscription, modules_enseigner} = user;
 
     const onInputChange = e => {
         setUser({ ...user, [e.target.name]: e.target.value });
@@ -27,7 +27,7 @@ const EditProfesseurs = () => {
     }, []);
 
 
-    const updateEmployee = async e => {
+    const updateProfesseurs = async e => {
         e.preventDefault();
         await axios.put(`http://localhost:5000/api/professeurs/${id}`, user);
         history.push("/");
@@ -46,7 +46,7 @@ const EditProfesseurs = () => {
                     matricule: result.response[0].matricule,
                     nom_complet: result.response[0].nom_complet,
                     date_inscription: result.response[0].date_inscription,
-                    modules_enseigner: result.response[0].enseigner
+                    modules_enseigner: result.response[0].modules_enseigner
                 });
             })
             .catch((error) => console.log("error", error));
@@ -56,15 +56,15 @@ const EditProfesseurs = () => {
         <div className="container">
             <div className="row mt-4">
                 <div className="col-sm-5 col-offset-3 mx-auto shadow p-5">
-                    <h4 className="text-center mb-4">Edit A employee</h4>
+                    <h4 className="text-center mb-4">Edit A Professeurs</h4>
 
-                    <h5 className="text-success">Employee ID : {user.id} </h5>
+                    <h5 className="text-success">Professeurs ID : {user.id} </h5>
 
                     <div className="form-group mb-3">
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter matricule"
                             name="matricule"
                            
                             value={matricule}
@@ -75,7 +75,7 @@ const EditProfesseurs = () => {
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter nom_du_modules"
+                            placeholder="Enter nom complet"
                             name="nom_complet"
                             value={nom_complet}
                             onChange={e => onInputChange(e)}
@@ -84,9 +84,9 @@ const EditProfesseurs = () => {
             
                     <div className="form-group mb-3">
                         <input
-                            type="text"
+                            type="date"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter date d'inscription "
                             name="date_inscription"
                             value={date_inscription}
                             onChange={e => onInputChange(e)}
@@ -96,13 +96,13 @@ const EditProfesseurs = () => {
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter modules enseigner"
                             name="modules_enseigner"
                             value={modules_enseigner}
                             onChange={e => onInputChange(e)}
                         />
                     </div>
-                    <button onClick={updateEmployee} className="btn btn-secondary btn-block">Update Employee</button>
+                    <button onClick={updateProfesseurs} className="btn btn-secondary btn-block">Update Professeurs</button>
 
                 </div>
             </div>

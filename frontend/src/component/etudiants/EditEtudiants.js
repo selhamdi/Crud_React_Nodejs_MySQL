@@ -29,7 +29,7 @@ const EditEtudiants = () => {
     }, []);
 
 
-    const updateEmployee = async e => {
+    const updateEtudiants = async e => {
         e.preventDefault();
         await axios.put(`http://localhost:5000/api/etudiants/${id}`, user);
         history.push("/");
@@ -60,14 +60,14 @@ const EditEtudiants = () => {
         <div className="container">
             <div className="row mt-4">
                 <div className="col-sm-5 col-offset-3 mx-auto shadow p-5">
-                    <h4 className="text-center mb-4">Edit A employee</h4>
+                    <h4 className="text-center mb-4">Edit A Etudiants</h4>
 
-                    <h5 className="text-success">Employee ID : {user.id} </h5>
+                    <h5 className="text-success">Etudiants ID : {user.id} </h5>
                     <div className="form-group mb-3">
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter nom_du_modules"
+                            placeholder="Enter nom complet"
                             name="nom_complet"
                             value={nom_complet}
                             onChange={e => onInputChange(e)}
@@ -77,7 +77,7 @@ const EditEtudiants = () => {
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter cin"
                             name="cin"
                             value={cin}
                             onChange={e => onInputChange(e)}
@@ -85,9 +85,9 @@ const EditEtudiants = () => {
                     </div>
                     <div className="form-group mb-3">
                         <input
-                            type="text"
+                            type="date"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter votre date de naissance"
                             name="date_de_naissance"
                             value={date_de_naissance}
                             onChange={e => onInputChange(e)}
@@ -98,7 +98,7 @@ const EditEtudiants = () => {
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter la filiere"
                             name="filiere"
                             value={filiere}
                             onChange={e => onInputChange(e)}
@@ -106,9 +106,9 @@ const EditEtudiants = () => {
                     </div>
                     <div className="form-group mb-3">
                         <input
-                            type="text"
+                            type="date"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter  date d'inscription"
                             name="date_inscription"
                             value={date_inscription}
                             onChange={e => onInputChange(e)}
@@ -118,13 +118,13 @@ const EditEtudiants = () => {
                         <input
                             type="text"
                             className="form-control form-control-lg"
-                            placeholder="Enter coefficient"
+                            placeholder="Enter nom Modules"
                             name="modules"
                             value={modules}
                             onChange={e => onInputChange(e)}
                         />
                     </div>
-                    <button onClick={updateEmployee} className="btn btn-secondary btn-block">Update Employee</button>
+                    <button onClick={updateEtudiants} className="btn btn-secondary btn-block">Update Employee</button>
 
                 </div>
             </div>

@@ -1,10 +1,27 @@
-const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // 
- 
+const express = require("express");
+const config = require('config');
+// const mysql = require("mysql2");
+const cors = require("cors");
+
 const app = express();
+
+
+
+app.use(express.json());
+app.use(cors());
+
+
+
+
+
+
+// app.listen(3001, () => {
+//   console.log("Server running on port 3001");
+// });
+// const app = express();
  
-app.use(cors())
+// app.use(cors())
 // create express app
  
 // setup the server port
@@ -25,6 +42,7 @@ const employeeRoutes = require('./src/routes/employee.route');
 const modulesRoutes = require('./src/routes/modules.route');
 const etudiantsRoutes= require('./src/routes/etudiants.route');
 const professeursRoutes= require('./src/routes/professeurs.route');
+const authRoutes=require('./src/routes/user.route')
 
 
 // create employee routes
@@ -32,6 +50,7 @@ app.use('/api/v1/employee', employeeRoutes);
 app.use('/api/v2/modules', modulesRoutes);
 app.use('/api/etudiants',etudiantsRoutes) ;
 app.use('/api/professeurs',professeursRoutes) ;
+app.use('/register',authRoutes) ;
 
 
 // listen to the port

@@ -25,7 +25,7 @@ function ProfesseursDetail() {
     };
 
     // On Page load display all records 
-    const loadEmployeeDetail = async () => {
+    const loadProfesseursDetail = async () => {
         var response = fetch('http://localhost:5000/api/professeurs')
             .then(function (response) {
                 return response.json();
@@ -35,17 +35,17 @@ function ProfesseursDetail() {
             });
     }
     useEffect(() => {
-        loadEmployeeDetail();
+        loadProfesseursDetail();
     }, []);
 
-    // Insert Employee Records 
-    const submitEmployeeRecord = async (e) => {
+    // Insert 
+    const submitProfesseursRecord = async (e) => {
         e.preventDefault();
         e.target.reset();
         await axios.post("http://localhost:5000/api/professeurs", user);
         alert('Data Inserted');
 
-        loadEmployeeDetail();
+        loadProfesseursDetail();
     };
 
     // Search Records here 
@@ -57,11 +57,11 @@ function ProfesseursDetail() {
             });
     }
 
-    // Delete Employee Record
+    // Delete 
     const deleteRecord = (productId) => {
         axios.delete(`http://localhost:5000/api/professeurs/${productId}`)
             .then((result) => {
-                loadEmployeeDetail();
+                loadProfesseursDetail();
             })
             .catch(() => {
                 alert('Error in the Code');
@@ -75,7 +75,7 @@ function ProfesseursDetail() {
                     <ul id="menu">
                         <li><Link to={`./ProfesseursDetail`}>
                             Professeurs </Link></li>
-                        <li><Link to={`./`}>
+                        <li><Link to={`./EtudiantsDetail`}>
                             Etudiants</Link></li>
                         <li> <Link to={`./ModuleDetail`}>
                             Module</Link></li>
@@ -105,16 +105,16 @@ function ProfesseursDetail() {
                 <div class="row mt-3" style={{ margintop: "4rem!important" }}>
                     <div class="col-sm-4">
                         <div className="box p-3 mb-3 mt-5" style={{ border: "1px solid #41106e" }}>
-                            <form onSubmit={submitEmployeeRecord}>
+                            <form onSubmit={submitProfesseursRecord}>
 
                                 <div class="form-group">
                                     <input type="text" class="form-control  mb-4" name="matricule"
-                                        value={matricule} onChange={e => onInputChange(e)} placeholder="Enter nom complet" required="" />
+                                        value={matricule} onChange={e => onInputChange(e)} placeholder="Enter matricule" required="" />
                                 </div>
 
                                 <div class="form-group">
                                     <input type="text" class="form-control  mb-4" name="nom_complet"
-                                        value={nom_complet} onChange={e => onInputChange(e)} placeholder="matricule" required="" />
+                                        value={nom_complet} onChange={e => onInputChange(e)} placeholder="nom_complet" required="" />
                                 </div>
 
                                 <div class="form-group">

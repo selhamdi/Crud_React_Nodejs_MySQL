@@ -8,8 +8,8 @@ var Professeurs = function(professeurs){
     this.modules_enseigner=professeurs.modules_enseigner;
   }
  
-// get all employees
-Professeurs.getAllEmployees = (result) =>{
+// get all 
+Professeurs.getAllProfesseurs = (result) =>{
     dbConn.query('SELECT * FROM professeurs', (err, res)=>{
         if(err){
             console.log('Error while fetching modules', err);
@@ -21,8 +21,8 @@ Professeurs.getAllEmployees = (result) =>{
     })
 }
  
-// get employee by Name for Search Data by name 
-Professeurs.getEmployeeByName = ( cin, result)=>{
+// get  by Name for Search Data by name 
+Professeurs.getProfesseursByName = ( cin, result)=>{
     dbConn.query('SELECT * FROM professeurs WHERE matricule=?',cin, (err, res)=>{
         if(err){
             console.log('Error while fetching modules by id', err);
@@ -33,9 +33,9 @@ Professeurs.getEmployeeByName = ( cin, result)=>{
     })
 }
  
-// create new employee
-Professeurs.createEmployee = (employeeReqData, result) =>{
-    dbConn.query('INSERT INTO professeurs SET ?', employeeReqData, (err, res)=>{
+// create new 
+Professeurs.createProfesseurs = (professeursReqData, result) =>{
+    dbConn.query('INSERT INTO professeurs SET ?', professeursReqData, (err, res)=>{
         if(err){
             console.log('Error while inserting data');
             result(null, err);
@@ -47,8 +47,8 @@ Professeurs.createEmployee = (employeeReqData, result) =>{
 }
  
  
-// get employee by ID for update
-Professeurs.getEmployeeByID = (id, result)=>{
+// get by ID for update
+Professeurs.getProfesseursByID = (id, result)=>{
     dbConn.query('SELECT * FROM professeurs WHERE id=?', id, (err, res)=>{
         if(err)
         {
@@ -63,9 +63,9 @@ Professeurs.getEmployeeByID = (id, result)=>{
 }
  
  
-// update employee
-Professeurs.updateEmployee = (id, employeeReqData, result)=>{
-    dbConn.query("UPDATE professeurs SET matricule=? ,nom_complet=?, date_inscription=? , modules_enseigner=? WHERE id = ?", [employeeReqData.matricule,employeeReqData.nom_complet,employeeReqData.date_inscription,employeeReqData.modules_enseigner, id], (err, res)=>{
+// update 
+Professeurs.updateProfesseurs = (id, professeursReqData, result)=>{
+    dbConn.query("UPDATE professeurs SET matricule=? ,nom_complet=?, date_inscription=? , modules_enseigner=? WHERE id = ?", [professeursReqData.matricule ,professeursReqData.nom_complet , professeursReqData.date_inscription, professeursReqData.modules_enseigner ,id],(err, res)=>{
         if(err){
             console.log('Error while updating the modules');
             result(null, err);
@@ -76,8 +76,8 @@ Professeurs.updateEmployee = (id, employeeReqData, result)=>{
     });
 }
  
-// delete employee
-Professeurs.deleteEmployee = (id, result)=>{
+// delete
+Professeurs.deleteProfesseurs = (id, result)=>{
     dbConn.query('DELETE FROM Professeurs WHERE id=?', [id], (err, res)=>{
         if(err){
             console.log('Error while deleting the modules');

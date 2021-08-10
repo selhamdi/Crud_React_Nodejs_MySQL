@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import {BsSearch} from "react-icons/bs";
+import '../../css/navbar.css'
+
 
 function EtudiantsDetail() {
     const [search, setSearch] = useState('');
@@ -25,7 +28,7 @@ function EtudiantsDetail() {
     };
 
     // On Page load display all records 
-    const loadEmployeeDetail = async () => {
+    const loadEtudiantsDetail = async () => {
         var response = fetch('http://localhost:5000/api/etudiants')
             .then(function (response) {
                 return response.json();
@@ -35,17 +38,17 @@ function EtudiantsDetail() {
             });
     }
     useEffect(() => {
-        loadEmployeeDetail();
+        loadEtudiantsDetail();
     }, []);
 
-    // Insert Employee Records 
-    const submitEmployeeRecord = async (e) => {
+    // Insert 
+    const submitEtudiantsRecord = async (e) => {
         e.preventDefault();
         e.target.reset();
         await axios.post("http://localhost:5000/api/etudiants", user);
         alert('Data Inserted');
 
-        loadEmployeeDetail();
+        loadEtudiantsDetail();
     };
 
     // Search Records here 
@@ -57,11 +60,11 @@ function EtudiantsDetail() {
             });
     }
 
-    // Delete Employee Record
+    // Delete 
     const deleteRecord = (productId) => {
         axios.delete(`http://localhost:5000/api/etudiants/${productId}`)
             .then((result) => {
-                loadEmployeeDetail();
+                loadEtudiantsDetail();
             })
             .catch(() => {
                 alert('Error in the Code');
@@ -70,38 +73,25 @@ function EtudiantsDetail() {
 
     return (
         <section>
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active ">
-                            sssssssss
-                        </li>
-                        <li class="nav-item">
-                        <Link lass="nav-link text-white"  to={`./ProfesseursDetail`}>
-                            <a class="nav-link text-white">Professeurs</a></Link>
-                        </li>
-
-                        <li class="nav-item">
-                        <Link lass="nav-link text-white"  to={`./`}>
-                            <a class="nav-link text-white">Etudiants</a></Link>
-                        </li>
-                         
-                        <li class="nav-item">
-                        <Link lass="nav-link text-white"  to={`./ModuleDetail`}>
-                            <a class="nav-link text-white">Module</a></Link>
-                        </li>
+         <nav id="navbar" class="">
+                <div class="nav-wrapper">
+                    <ul id="menu">
+                        <li><Link to={`./ProfesseursDetail`}>
+                            Professeurs </Link></li>
+                        <li><Link to={`./EtudiantsDetail`}>
+                            Etudiants</Link></li>
+                        <li> <Link to={`./ModuleDetail`}>
+                            Module</Link></li>
                     </ul>
                 </div>
             </nav>
 
             <div class="container">
-
-                <h4 className="mb-3 text-center mt-4">CRUD Operation in MERN</h4>
-                <div class="row mt-3">
+            <h4 className="mb-3 text-center mt-4">Table des proffesseurs</h4>
+                <div class="row mt-3" style={{ margintop: "4rem!important" }}>
                     <div class="col-sm-4">
                         <div className="box p-3 mb-3 mt-5" style={{ border: "1px solid #d0d0d0" }}>
-                            <form onSubmit={submitEmployeeRecord}>
-                                <h5 className="mb-3 ">Insert Employee Records</h5>
+                            <form onSubmit={submitEtudiantsRecord}>
                                 <div class="form-group">
                                     <input type="text" class="form-control  mb-4" name="nom_complet"
                                         value={nom_complet} onChange={e => onInputChange(e)} placeholder="Enter nom complet" required="" />
@@ -132,24 +122,19 @@ function EtudiantsDetail() {
                                     <input type="text" class="form-control mb-2" name="modules"
                                         value={modules} onChange={e => onInputChange(e)} placeholder="Enter date de inscription" required="" />
                                 </div>
-                                {/* <div class="form-group">
-                                    <input type="text" class="form-control mb-2" name="modules"
-                                        value={modules} onChange={e => onInputChange(e)} placeholder="Enter Modules " required="" />
-                                </div> */}
+                          
 
-                                <button type="submit" class="btn btn-primary btn-block mt-4">Insert Record</button>
+<button type="submit" class="btn btn-primary btn-block mt-4" style={{backgroundColor:'#41106e'}}>Ajouter</button>
                             </form>
                         </div>
                     </div>
                     <div class="col-sm-8">
-                        <h5 class="text-center  ml-4 mt-4  mb-5">View Records</h5>
                         <div class="input-group mb-4 mt-3">
                             <div class="form-outline">
-                                <input type="text" id="form1" onChange={(e) => setSearch(e.target.value)} class="form-control" placeholder="Search Employee Here" style={{ backgroundColor: "#ececec" }} />
+                            <input type="text" id="form1" onChange={(e) => setSearch(e.target.value)} class="form-control" placeholder="Chercher Etudiants par CIN " style={{ backgroundColor: "white" ,width:"280px"}} />
                             </div>
-                            <button type="button" onClick={searchRecords} class="btn btn-success">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                            </button>
+                            <button type="button" onClick={searchRecords} class="btn btn-success" style={{backgroundColor:'#41106e'  ,borderStyle:"none"}}>
+                            <BsSearch/>                            </button>
                         </div>
                         <table class="table table-hover  table-striped table-bordered ml-4 ">
                             <thead>

@@ -1,9 +1,9 @@
 const ModulesModel = require('../models/modules.model');
  
-// get all employee list
-exports.getEmployeeList = (req, res)=> {
-    //console.log('here all employees list');
-    ModulesModel.getAllEmployees((err, modules) =>{
+// get all  list
+exports.getModulesList = (req, res)=> {
+
+    ModulesModel.getAllModules((err, modules) =>{
         console.log('We are here');
         if(err)
         res.send(err);
@@ -12,10 +12,9 @@ exports.getEmployeeList = (req, res)=> {
     })
 }
  
-// get employee by Name for earch by Name 
-exports.getEmployeeByName = (req, res)=>{
-    //console.log('get emp by id');
-    ModulesModel.getEmployeeByName(req.params.nom_du_module, (err, modules)=>{
+// get modules by Name for earch by Name 
+exports.getModulesByName = (req, res)=>{
+    ModulesModel.gettModulesByName(req.params.nom_du_module, (err, modules)=>{
         if(err)
         res.send(err);
         console.log('single modules data',modules);
@@ -24,15 +23,16 @@ exports.getEmployeeByName = (req, res)=>{
 }
  
  
-// create new employee
-exports.createNewEmployee = (req, res) =>{
-    const employeeReqData = new ModulesModel(req.body);
-    console.log('employeeReqData', employeeReqData);
+// create new 
+exports.createNewModules = (req, res) =>{
+    const modulesReqData = new ModulesModel(req.body);
+    console.log('modulesReqData', modulesReqData);
+
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        ModulesModel.createEmployee(employeeReqData, (err, modules)=>{
+        ModulesModel.createModules(modulesReqData, (err, modules)=>{
             if(err)
             res.send(err);
             res.json({status: true, message: 'modules Created Successfully', data: modules.insertId})
@@ -41,28 +41,26 @@ exports.createNewEmployee = (req, res) =>{
 }
  
  
-// get employee by ID  for Update 
-exports.getEmployeeByID = (req, res)=>{
-    //console.log('get emp by id');
-    ModulesModel.getEmployeeByID(req.params.id, (err, modules)=>{
+// get  by ID  for Update 
+exports.getModulesByID = (req, res)=>{
+    ModulesModel.getModulesByID(req.params.id, (err, modules)=>{
         if(err)
         res.send(err);
         console.log('single modules data', modules);
-        // res.json({"first_name":"Dheeraj"});
         res.send(JSON.stringify({ status: 200, error: null, response: modules }));
     })
 }
  
  
-// update employee
-exports.updateEmployee = (req, res)=>{
-    const employeeReqData = new ModulesModel(req.body);
-    console.log('employeeReqData update', employeeReqData);
+// update 
+exports.updateModules = (req, res)=>{
+    const modulesReqData = new ModulesModel(req.body);
+    console.log('modulesReqData update', modulesReqData);
     // check null
     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
         res.send(400).send({success: false, message: 'Please fill all fields'});
     }else{
-        ModulesModel.updateEmployee(req.params.id, employeeReqData, (err, modules)=>{
+        ModulesModel.updateModules(req.params.id, modulesReqData, (err, modules)=>{
             if(err)
             res.send(err);
             res.json({status: true, message: 'modules updated Successfully'})
@@ -70,9 +68,9 @@ exports.updateEmployee = (req, res)=>{
     }
 }
  
-// delete employee
-exports.deleteEmployee = (req, res)=>{
-    ModulesModel.deleteEmployee(req.params.id, (err, modules)=>{
+// delete 
+exports.deleteModules = (req, res)=>{
+    ModulesModel.deleteModules(req.params.id, (err, modules)=>{
         if(err)
         res.send(err);
         res.json({success:true, message: 'modules deleted successully!'});

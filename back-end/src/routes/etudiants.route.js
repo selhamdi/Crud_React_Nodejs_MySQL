@@ -1,25 +1,25 @@
 const express = require('express');
 const router = express.Router();
  
-const employeeController = require('../controllers/etudiants.controller')
+const etudiantsController = require('../controllers/etudiants.controller')
  
-// get all employees
-router.get('/', employeeController.getEmployeeList);
+// get all 
+router.get('/', etudiantsController.getEtudiantsList);
  
-// get employee by ID
-router.get('/:id',employeeController.getEmployeeByID);
+// get  by ID
+router.get('/:id', etudiantsController.getEtudiantsByID);
  
  
 // get ID for Update 
-router.get('/searchRecord/:cin',employeeController.getEmployeeByName);
+router.get('/searchRecord/:cin', etudiantsController.getEtudiantsByName);
  
-// create new employee
-router.post('/', employeeController.createNewEmployee);
+// create new 
+router.post('/', etudiantsController.createNewEtudiants);
  
-// update employee
-router.put('/:id', employeeController.updateEmployee);
+// update 
+router.put('/:id', etudiantsController.updateEtudiants);
  
-// delete employee
-router.delete('/:id',employeeController.deleteEmployee);
+// delete 
+router.delete('/:id',etudiantsController.deleteEtudiants);
  
 module.exports = router;
